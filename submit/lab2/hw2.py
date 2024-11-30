@@ -94,23 +94,23 @@ class MyLGBM:
 # train_feature = extract_features_parallel(train_path)
 # df = pd.DataFrame(train_feature)
 # df["label"] = train_label
-# df.to_csv("train_feature.csv", index=False)
+# df.to_csv("./CSVfile/train_feature.csv", index=False)
 
 # dev_feature = extract_features_parallel(dev_path)
 # df = pd.DataFrame(dev_feature)
 # df["label"] = dev_label
-# df.to_csv("dev_feature.csv", index=False)
+# df.to_csv("./CSVfile/dev_feature.csv", index=False)
 
 # test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
 # test_path = list(test_csv.path)
 # test_feature = extract_features_parallel(test_path)
 # df = pd.DataFrame(test_feature)
-# df.to_csv("test_feature.csv", index=False)
+# df.to_csv("./CSVfile/test_feature.csv", index=False)
 
 # 加载特征和标签
-train_feature = pd.read_csv("train_feature.csv")[:-1]
-dev_feature = pd.read_csv("dev_feature.csv")[:-1]
-test_feature = pd.read_csv("test_feature.csv")[:]
+train_feature = pd.read_csv("./CSVfile/train_feature.csv")[:-1]
+dev_feature = pd.read_csv("./CSVfile/dev_feature.csv")[:-1]
+test_feature = pd.read_csv("./CSVfile/test_feature.csv")[:]
 
 train_label = train_feature["label"]
 dev_label = dev_feature["label"]
@@ -160,7 +160,7 @@ def write_result(test_preds):
         return -1
     test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
     test_csv["label"] = test_preds
-    test_csv.to_csv("./result.csv", sep="#")
+    test_csv.to_csv("./submit/lab2/hw2_result.csv", sep="#")
     print("测试集预测结果已成功写入到文件中!")
 
 # 预测测试集并写入结果

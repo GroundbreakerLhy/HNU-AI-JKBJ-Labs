@@ -1,6 +1,3 @@
 *.wav
 *.bin
 *.npy
-dev_feature.csv
-test_feature.csv
-train_feature.csv
