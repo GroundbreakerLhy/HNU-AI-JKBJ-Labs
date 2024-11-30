@@ -1,12 +1,12 @@
 #num#id#path#text#label
-0#1#Ses05F_impro01_F000#test/Ses05F_impro01_F000.wav#Hi, I need an ID.#2
+0#1#Ses05F_impro01_F000#test/Ses05F_impro01_F000.wav#Hi, I need an ID.#3
 1#2#Ses05F_impro01_M000#test/Ses05F_impro01_M000.wav#ahh Yeah, this is the wrong line.  I'm sorry.  You need to go back over to line two B.  That's where you should have started from.#2
 2#3#Ses05F_impro01_M003#test/Ses05F_impro01_M003.wav#Well, I have no camera here.  I can't help you at all here, ma'am.  I have forms for something completely different.  You need to go to a different place.#2
 3#4#Ses05F_impro01_F008#test/Ses05F_impro01_F008.wav#So could I maybe get the form from you, fill it out here- and maybe you could-#0
 4#5#Ses05F_impro01_F017#test/Ses05F_impro01_F017.wav#Isn't there anything you can do?  Just call over and ask them if I can go to the front of the line in the other line.#1
 5#6#Ses05F_impro01_F018#test/Ses05F_impro01_F018.wav#Why not?#1
 6#7#Ses05F_impro01_F020#test/Ses05F_impro01_F020.wav#Right, well, last time they told me, it was this line, and obviously, it's not true.#0
-7#8#Ses05F_impro02_M000#test/Ses05F_impro02_M000.wav#What is it?#2
+7#8#Ses05F_impro02_M000#test/Ses05F_impro02_M000.wav#What is it?#3
 8#9#Ses05F_impro02_F001#test/Ses05F_impro02_F001.wav#um.#3
 9#10#Ses05F_impro02_F002#test/Ses05F_impro02_F002.wav#I'm sorry.  It's just a lot ahh to explain. ahh I got a call--#2
 10#11#Ses05F_impro02_F004#test/Ses05F_impro02_F004.wav#I got a call today,#2
@@ -22,7 +22,7 @@
 20#21#Ses05F_impro02_M014#test/Ses05F_impro02_M014.wav#I don't understand why they would just do something like this?#1
 21#22#Ses05F_impro02_M015#test/Ses05F_impro02_M015.wav#It doesn't make any sense.  It's stupid.  I told you you shouldn't go in the Army.#1
 22#23#Ses05F_impro02_F021#test/Ses05F_impro02_F021.wav#I don't think there's anything we can do.#1
-23#24#Ses05F_impro02_M024#test/Ses05F_impro02_M024.wav#I'll tell them I'm sick and that you can't leave something.#2
+23#24#Ses05F_impro02_M024#test/Ses05F_impro02_M024.wav#I'll tell them I'm sick and that you can't leave something.#1
 24#25#Ses05F_impro02_M025#test/Ses05F_impro02_M025.wav#It's not fair.#1
 25#26#Ses05F_impro02_F023#test/Ses05F_impro02_F023.wav#I know.  I know it's not fair.#1
 26#27#Ses05F_impro02_M026#test/Ses05F_impro02_M026.wav#Why has to be you?  There's all those other people.  Somebody else can go instead.  It's not right.#1
@@ -124,7 +124,7 @@
 122#123#Ses05F_impro03_M065#test/Ses05F_impro03_M065.wav#Exactly, [LAUGHTER] I think that'll go over great, don't you?#0
 123#124#Ses05F_impro03_F058#test/Ses05F_impro03_F058.wav#Yeah, totally.#1
 124#125#Ses05F_impro03_M066#test/Ses05F_impro03_M066.wav#That's what girls like, right?#2
-125#126#Ses05F_impro03_F059#test/Ses05F_impro03_F059.wav#Total turn on.#2
+125#126#Ses05F_impro03_F059#test/Ses05F_impro03_F059.wav#Total turn on.#0
 126#127#Ses05F_impro03_M067#test/Ses05F_impro03_M067.wav#Would you mind popping out a few for me?#2
 127#128#Ses05F_impro03_F060#test/Ses05F_impro03_F060.wav#[LAUGHTER]#1
 128#129#Ses05F_impro03_M068#test/Ses05F_impro03_M068.wav#That'd be great, thanks.#0
@@ -171,7 +171,7 @@
 169#170#Ses05F_impro04_M037#test/Ses05F_impro04_M037.wav#Everyone wants to be a working actor, but they all work at something else.#2
 170#171#Ses05F_impro04_F040#test/Ses05F_impro04_F040.wav#Yeah.#2
 171#172#Ses05F_impro04_M038#test/Ses05F_impro04_M038.wav#So what's the something else?#2
-172#173#Ses05F_impro04_F041#test/Ses05F_impro04_F041.wav#Bartending, catering.#2
+172#173#Ses05F_impro04_F041#test/Ses05F_impro04_F041.wav#Bartending, catering.#3
 173#174#Ses05F_impro04_M039#test/Ses05F_impro04_M039.wav#You can't get a catering gig?  Well, I can call some friends.  I- Well, I did call some friends before, but you went in once and then never went back.#2
 174#175#Ses05F_impro04_F042#test/Ses05F_impro04_F042.wav#Would you be willing to make some more calls on my behalf? I won't--I won't make you look bad.#3
 175#176#Ses05F_impro04_M040#test/Ses05F_impro04_M040.wav#If I- If you- Will you stick with it?#2
@@ -205,7 +205,7 @@
 203#204#Ses05F_impro05_M015#test/Ses05F_impro05_M015.wav#Sentimental value.#2
 204#205#Ses05F_impro05_M016#test/Ses05F_impro05_M016.wav#Right.  Well, I don't know what to tell you. Um- What I can offer you is a fifty dollar voucher on your next flight.#2
 205#206#Ses05F_impro05_M017#test/Ses05F_impro05_M017.wav#No, I understand. I mean. It's got to be tough all those sentimental things, but um- this is all I can do for you.#2
-206#207#Ses05F_impro05_M018#test/Ses05F_impro05_M018.wav#Well, you know, sometimes that's--really, I mean what else could we do?#2
+206#207#Ses05F_impro05_M018#test/Ses05F_impro05_M018.wav#Well, you know, sometimes that's--really, I mean what else could we do?#3
 207#208#Ses05F_impro05_F018#test/Ses05F_impro05_F018.wav#Uh- Not lose the baggage in the first place. I mean You're offering a service here. I paid so much money for that ticket.#0
 208#209#Ses05F_impro05_M019#test/Ses05F_impro05_M019.wav#Well,#1
 209#210#Ses05F_impro05_M022#test/Ses05F_impro05_M022.wav#Let's- Let's just relax for a moment, ma'am.  You understand, obviously, we're going to do everything we can to keep all of your luggage here.#2
@@ -270,7 +270,7 @@
 268#269#Ses05F_impro06_M014#test/Ses05F_impro06_M014.wav#Of course not.  You have no idea what it's like to lose a kid.#3
 269#270#Ses05F_impro06_F017#test/Ses05F_impro06_F017.wav#Yeah, I'm just going to miss him.#3
 270#271#Ses05F_impro06_F018#test/Ses05F_impro06_F018.wav#Thank you.#3
-271#272#Ses05F_impro06_M017#test/Ses05F_impro06_M017.wav#Is there a funeral planned? or-#2
+271#272#Ses05F_impro06_M017#test/Ses05F_impro06_M017.wav#Is there a funeral planned? or-#3
 272#273#Ses05F_impro06_F019#test/Ses05F_impro06_F019.wav#Yeah, they're going to do some sort of memorial service or something.#3
 273#274#Ses05F_impro06_M018#test/Ses05F_impro06_M018.wav#Cool, Well, If you want me to go with you, I will.#3
 274#275#Ses05F_impro06_F020#test/Ses05F_impro06_F020.wav#Thanks.#3
@@ -363,7 +363,7 @@
 361#362#Ses05F_impro08_F003#test/Ses05F_impro08_F003.wav#I kwon, it is ridiculous#1
 362#363#Ses05F_impro08_F004#test/Ses05F_impro08_F004.wav#yeah, I understand.#1
 363#364#Ses05F_impro08_M005#test/Ses05F_impro08_M005.wav#Can you like talk to somebody about this, can you like can you tell them that this is ridiculous and can they change it from now on, is there a phone number you have that I can call that will like automatically be talking to somebody a human being.#0
-364#365#Ses05F_impro08_F005#test/Ses05F_impro08_F005.wav#Uh- when's when's-#2
+364#365#Ses05F_impro08_F005#test/Ses05F_impro08_F005.wav#Uh- when's when's-#1
 365#366#Ses05F_impro08_F007#test/Ses05F_impro08_F007.wav#If yeah, well if you just slow down we'll um, we'll definitely have your problem solved and after we have your problem solved, then I can transfer you to a manager, someone who can you know, you can voice your complaint to, who will be able to something about it.#2
 366#367#Ses05F_impro08_M007#test/Ses05F_impro08_M007.wav#Like I know I paid last month, but it hasn't been paid and you charged me a late fee.#2
 367#368#Ses05F_impro08_F008#test/Ses05F_impro08_F008.wav#Okay, so where?, okay, all right, so where did you uh- locate your your bill?#2
@@ -409,7 +409,7 @@
 407#408#Ses05F_script01_1_M003#test/Ses05F_script01_1_M003.wav#I don't know.  but When it cracked he ran back into the house and start to cry in the kitchen.#2
 408#409#Ses05F_script01_1_F004#test/Ses05F_script01_1_F004.wav#Did you talk to him?#3
 409#410#Ses05F_script01_1_M004#test/Ses05F_script01_1_M004.wav#No.  I figured it was best to leave him alone.#3
-410#411#Ses05F_script01_1_F005#test/Ses05F_script01_1_F005.wav#He cried hard.#2
+410#411#Ses05F_script01_1_F005#test/Ses05F_script01_1_F005.wav#He cried hard.#3
 411#412#Ses05F_script01_1_M005#test/Ses05F_script01_1_M005.wav#I could hear him right through the floor of my room.#3
 412#413#Ses05F_script01_1_F006#test/Ses05F_script01_1_F006.wav#He is thinking about him again.#3
 413#414#Ses05F_script01_1_F007#test/Ses05F_script01_1_F007.wav#It's getting just like after Larry died, he's having dreams, he's walking around at night.#3
@@ -441,7 +441,7 @@
 439#440#Ses05F_script01_2_F010#test/Ses05F_script01_2_F010.wav#I want you to pretend like he's coming back!#0
 440#441#Ses05F_script01_2_F011#test/Ses05F_script01_2_F011.wav#Because if he's not coming back, then I'll kill myself.#0
 441#442#Ses05F_script01_2_F012#test/Ses05F_script01_2_F012.wav#Laugh.  Laugh at me, but what happens the night that she goes to sleep in his bed, and his memorial breaks in pieces?#0
-442#443#Ses05F_script01_2_F014#test/Ses05F_script01_2_F014.wav#Only last week, another boy turned up in Detroit, been missing longer than Larry, you read it yourself.#0
+442#443#Ses05F_script01_2_F014#test/Ses05F_script01_2_F014.wav#Only last week, another boy turned up in Detroit, been missing longer than Larry, you read it yourself.#1
 443#444#Ses05F_script01_2_F016#test/Ses05F_script01_2_F016.wav#You've got to believe. You've got to--#2
 444#445#Ses05F_script01_2_M016#test/Ses05F_script01_2_M016.wav#What do you mean me above all?  Look at you.  You're shaking!#0
 445#446#Ses05F_script01_2_F017#test/Ses05F_script01_2_F017.wav#I can't help it!#0
@@ -476,7 +476,7 @@
 474#475#Ses05F_script01_3_F023#test/Ses05F_script01_3_F023.wav#Oh gee.#3
 475#476#Ses05F_script01_3_M027#test/Ses05F_script01_3_M027.wav#Takes a little time to toss something like that off you know because they weren't just men-#3
 476#477#Ses05F_script01_3_M028#test/Ses05F_script01_3_M028.wav#for instance, there's this one time.  It had been raining for several days.  And this kid came up to me and gave me his last pair of dry socks. you know, He just put them in my pocket.#1
-477#478#Ses05F_script01_3_M029#test/Ses05F_script01_3_M029.wav#I know that- that's not a big thing, but it's just the kind of guys I had. They didn't die. They- They killed themselves for each other.#3
+477#478#Ses05F_script01_3_M029#test/Ses05F_script01_3_M029.wav#I know that- that's not a big thing, but it's just the kind of guys I had. They didn't die. They- They killed themselves for each other.#2
 478#479#Ses05F_script01_3_M030#test/Ses05F_script01_3_M030.wav#I mean that exactly that-a little more selfish and they would have still been here today.#1
 479#480#Ses05F_script01_3_M031#test/Ses05F_script01_3_M031.wav#And I got an ideal, watching them all go down.  Everything was being destroyed see and-#3
 480#481#Ses05F_script01_3_M032#test/Ses05F_script01_3_M032.wav#but it seemed to me that something new was being created at the same time, a kind of responsibility, man for man.  Do you understand me?#1
@@ -560,7 +560,7 @@
 558#559#Ses05F_script03_1_M005#test/Ses05F_script03_1_M005.wav#Hello?  Hello?  What?  Wrong number.#2
 559#560#Ses05F_script03_1_F005#test/Ses05F_script03_1_F005.wav#Oh, it sent shivers up my spine.#1
 560#561#Ses05F_script03_1_F006#test/Ses05F_script03_1_F006.wav#Behave exquisitely.#2
-561#562#Ses05F_script03_1_M007#test/Ses05F_script03_1_M007.wav#With the most perfect poise.#0
+561#562#Ses05F_script03_1_M007#test/Ses05F_script03_1_M007.wav#With the most perfect poise.#2
 562#563#Ses05F_script03_1_F007#test/Ses05F_script03_1_F007.wav#Yes, I shall probably do a Court Curtsey.#2
 563#564#Ses05F_script03_1_F010#test/Ses05F_script03_1_F010.wav#The whole business is really rather ridiculous.#2
 564#565#Ses05F_script03_1_F011#test/Ses05F_script03_1_F011.wav#Meaning exactly that.#2
@@ -568,7 +568,7 @@
 566#567#Ses05F_script03_1_F013#test/Ses05F_script03_1_F013.wav#Who's they?#2
 567#568#Ses05F_script03_1_M013#test/Ses05F_script03_1_M013.wav#All the futile mortals who try to make life unbearable.  Laugh at them.  Be flippant.  Laugh at everything, all their sacred shibboleths.  Flippancy brings out the acid in their damned sweetness and light.#1
 568#569#Ses05F_script03_1_M014#test/Ses05F_script03_1_M014.wav#Certainly you must.  We're figures of fun alright [LAUGHTER].#2
-569#570#Ses05F_script03_1_F015#test/Ses05F_script03_1_F015.wav#Well, what if-what happens when our love-#0
+569#570#Ses05F_script03_1_F015#test/Ses05F_script03_1_F015.wav#Well, what if-what happens when our love-#2
 570#571#Ses05F_script03_1_M015#test/Ses05F_script03_1_M015.wav#Who knows?#1
 571#572#Ses05F_script03_1_M016#test/Ses05F_script03_1_M016.wav#No, that fire will fade along with our passion.#2
 572#573#Ses05F_script03_1_M017#test/Ses05F_script03_1_M017.wav#It all depends on how well we played.#2
@@ -620,7 +620,7 @@
 618#619#Ses05F_script03_2_F022#test/Ses05F_script03_2_F022.wav#Yes, I did quite a bit.#2
 619#620#Ses05F_script03_2_M025#test/Ses05F_script03_2_M025.wav#I suppose you let him kiss you a good deal more then.#2
 620#621#Ses05F_script03_2_F023#test/Ses05F_script03_2_F023.wav#Mind your own business.#2
-621#622#Ses05F_script03_2_M026#test/Ses05F_script03_2_M026.wav#You must have a riotous time, no restraint at all, very enjoyable.  I mean, you never had much anyway.#0
+621#622#Ses05F_script03_2_M026#test/Ses05F_script03_2_M026.wav#You must have a riotous time, no restraint at all, very enjoyable.  I mean, you never had much anyway.#1
 622#623#Ses05F_script03_2_F024#test/Ses05F_script03_2_F024.wav#Oh dear, you really are becoming quite insufferable.  I would imagine it's because you're drunk.#1
 623#624#Ses05F_script03_2_F027#test/Ses05F_script03_2_F027.wav#Not very funny, dear, you better have some more brandy.#2
 624#625#Ses05F_script03_2_F029#test/Ses05F_script03_2_F029.wav#Why?#2
@@ -650,7 +650,7 @@
 648#649#Ses05M_impro01_F004#test/Ses05M_impro01_F004.wav#No, but this is for um- replacements and you need a new -- whole new license as a California --#2
 649#650#Ses05M_impro01_M005#test/Ses05M_impro01_M005.wav#I'm not getting a -- well, you wait in this line and not get an attitude.#0
 650#651#Ses05M_impro01_F006#test/Ses05M_impro01_F006.wav#No, I understand and there are a lot of people here.  But what I'm telling you is that it's different for different states and since your getting a new license in the state of California -- You have to fill out a different form than you did.#2
-651#652#Ses05M_impro01_F009#test/Ses05M_impro01_F009.wav#I know.#1
+651#652#Ses05M_impro01_F009#test/Ses05M_impro01_F009.wav#I know.#2
 652#653#Ses05M_impro01_F012#test/Ses05M_impro01_F012.wav#Yeah.  I know it's gonna take a minute.  But you-- so you might as well get started now.#2
 653#654#Ses05M_impro01_M015#test/Ses05M_impro01_M015.wav#Wouldn't you? Oh, come on.  you just tell me.  You would make an exception for me.#1
 654#655#Ses05M_impro01_F021#test/Ses05M_impro01_F021.wav#I'm gonna- I'm gonna bring security over and have them escort you out.#1
@@ -713,7 +713,7 @@
 711#712#Ses05M_impro03_M018#test/Ses05M_impro03_M018.wav#Um- And she wants you to be in it, too.  She loves you so much. She thinks you're the sweetest.  Of course, you are.  You're You're my best friend so-#2
 712#713#Ses05M_impro03_F016#test/Ses05M_impro03_F016.wav#Where is she right now?#1
 713#714#Ses05M_impro03_M019#test/Ses05M_impro03_M019.wav#oh, She's back at work. yeah.#0
-714#715#Ses05M_impro03_F017#test/Ses05M_impro03_F017.wav#Yeah,I'll hang out with the both of you.#3
+714#715#Ses05M_impro03_F017#test/Ses05M_impro03_F017.wav#Yeah,I'll hang out with the both of you.#2
 715#716#Ses05M_impro03_M020#test/Ses05M_impro03_M020.wav#Of course.  We'll go out to dinner later this week.#2
 716#717#Ses05M_impro03_F018#test/Ses05M_impro03_F018.wav#yes.#2
 717#718#Ses05M_impro03_M021#test/Ses05M_impro03_M021.wav#It will be perfect.#2
@@ -765,7 +765,7 @@
 763#764#Ses05M_impro04_F021#test/Ses05M_impro04_F021.wav#ah.#2
 764#765#Ses05M_impro04_F022#test/Ses05M_impro04_F022.wav#Not- Not selling pot, right?#2
 765#766#Ses05M_impro04_F023#test/Ses05M_impro04_F023.wav#Okay so.#1
-766#767#Ses05M_impro04_F024#test/Ses05M_impro04_F024.wav#Fair enough.#1
+766#767#Ses05M_impro04_F024#test/Ses05M_impro04_F024.wav#Fair enough.#2
 767#768#Ses05M_impro04_F026#test/Ses05M_impro04_F026.wav#Sorry.  So, let's see.  What else?  What's available? What? Um.  Hmm.#2
 768#769#Ses05M_impro04_F027#test/Ses05M_impro04_F027.wav#Well, not off the top of head.  It will just take you know take a minute.  But do you have any, like, special skills?#2
 769#770#Ses05M_impro04_F028#test/Ses05M_impro04_F028.wav#Well, maybe we can find you something with juggling.#2
@@ -861,7 +861,7 @@
 859#860#Ses05M_impro07_F011#test/Ses05M_impro07_F011.wav#Uh huh.  Yes, seriously, for years.#1
 860#861#Ses05M_impro07_M011#test/Ses05M_impro07_M011.wav#Finally.  I'm so excited.  We're gonna -- well, I'll be here.  We're still gonna be able to see each other.#0
 861#862#Ses05M_impro07_F012#test/Ses05M_impro07_F012.wav#I know.  I know.  I'm- I'm definitely -- I realize [LAUGHTER].#1
-862#863#Ses05M_impro07_M013#test/Ses05M_impro07_M013.wav#What are you, wait, what are you doing?#1
+862#863#Ses05M_impro07_M013#test/Ses05M_impro07_M013.wav#What are you, wait, what are you doing?#0
 863#864#Ses05M_impro07_F013#test/Ses05M_impro07_F013.wav#Um- I'm gonna be studying at U.S.C., too.#1
 864#865#Ses05M_impro07_M014#test/Ses05M_impro07_M014.wav#Perfect!  Oh, my God.  Are you staying, are you going to live on campus?#1
 865#866#Ses05M_impro07_F015#test/Ses05M_impro07_F015.wav#Yeah.  Totally- Well where are you going to live?#2
@@ -938,7 +938,7 @@
 936#937#Ses05M_impro08_F008#test/Ses05M_impro08_F008.wav#yeah.#2
 937#938#Ses05M_impro08_F009#test/Ses05M_impro08_F009.wav#It goes- It goes, like, through doorways.  But it goes a long distance.#2
 938#939#Ses05M_impro08_M009#test/Ses05M_impro08_M009.wav#Okay.  Is it being- Is it being compressed between anything by any chance?  Because sometimes your connection can be you know, disrupted by, you know, the cable being squished.#1
-939#940#Ses05M_impro08_M010#test/Ses05M_impro08_M010.wav#Yeah. That can be- That can create a bad connection.  And it won't always be a bad connection, but it will be bad off and on.#0
+939#940#Ses05M_impro08_M010#test/Ses05M_impro08_M010.wav#Yeah. That can be- That can create a bad connection.  And it won't always be a bad connection, but it will be bad off and on.#1
 940#941#Ses05M_impro08_F011#test/Ses05M_impro08_F011.wav#Well, I- I can check that.  Is there anything else we can do, too?  Like, I'll go through and check the line throughout the house, but --#2
 941#942#Ses05M_impro08_M011#test/Ses05M_impro08_M011.wav#Yeah, well, absolutely.  What we can -- let's just go ahead and just do a basic diagnostic of your system first off, okay.  Can you go down to your start button?#1
 942#943#Ses05M_impro08_F012#test/Ses05M_impro08_F012.wav#Uh huh.#2
@@ -1045,7 +1045,7 @@
 1043#1044#Ses05M_script01_3_F006#test/Ses05M_script01_3_F006.wav#I figured they would, your mother at least.#3
 1044#1045#Ses05M_script01_3_F007#test/Ses05M_script01_3_F007.wav#Well, from her perspective, I mean, why else would I come here?#3
 1045#1046#Ses05M_script01_3_M010#test/Ses05M_script01_3_M010.wav#You feel it's wrong here, don't you; this yard, this chair?  I want you to be ready for me, Annie. I- I don't want to win you away from anything.#1
-1046#1047#Ses05M_script01_3_F009#test/Ses05M_script01_3_F009.wav#Oh, Chris I've been ready for a long time.#3
+1046#1047#Ses05M_script01_3_F009#test/Ses05M_script01_3_F009.wav#Oh, Chris I've been ready for a long time.#2
 1047#1048#Ses05M_script01_3_F010#test/Ses05M_script01_3_F010.wav#I almost got married two years ago.#3
 1048#1049#Ses05M_script01_3_M013#test/Ses05M_script01_3_M013.wav#You felt something that far back?#1
 1049#1050#Ses05M_script01_3_F012#test/Ses05M_script01_3_F012.wav#Everyday since.#3
@@ -1090,7 +1090,7 @@
 1088#1089#Ses05M_script02_1_M008#test/Ses05M_script02_1_M008.wav#I can't believe I forgot.I'm like a little kid.  I'm surprised I made it out of the house with my fly zipped. Oh, [LAUGHTER]#1
 1089#1090#Ses05M_script02_1_M009#test/Ses05M_script02_1_M009.wav#Oh, I wonder if they can hear me or if they can feel the vibrations when we move around in the sand. or something#2
 1090#1091#Ses05M_script02_1_M010#test/Ses05M_script02_1_M010.wav#Do you want my jacket?#2
-1091#1092#Ses05M_script02_1_M017#test/Ses05M_script02_1_M017.wav#Honey, it's a natural phenomenon.  I mean, this kind of thing only happens once a year.  It's a great opportunity.#2
+1091#1092#Ses05M_script02_1_M017#test/Ses05M_script02_1_M017.wav#Honey, it's a natural phenomenon.  I mean, this kind of thing only happens once a year.  It's a great opportunity.#1
 1092#1093#Ses05M_script02_1_M018#test/Ses05M_script02_1_M018.wav#I mean, Think about people in Kansas, they've got to get like you know plane tickets and hotel reservations just to see this.  We're just forty minutes away.  It's just too good of an opportunity to pass up.#1
 1093#1094#Ses05M_script02_1_M019#test/Ses05M_script02_1_M019.wav#Yeah, but all that time on the beach is the highlight of their little lives.  You know,#1
 1094#1095#Ses05M_script02_1_M020#test/Ses05M_script02_1_M020.wav#and all that about flopping around, it's like laying eggs or what do you -- spawning or mating or something like that.#0
@@ -1158,7 +1158,7 @@
 1156#1157#Ses05M_script03_1_M009#test/Ses05M_script03_1_M009.wav#things that ought to matter most dreadfully don't matter at all when one's happy, do they?#1
 1157#1158#Ses05M_script03_1_M010#test/Ses05M_script03_1_M010.wav#Uhh, You mustn't say that, my darling.#0
 1158#1159#Ses05M_script03_1_M011#test/Ses05M_script03_1_M011.wav#Being that sacred and wonderful thing, love.#2
-1159#1160#Ses05M_script03_1_M012#test/Ses05M_script03_1_M012.wav#Um What does it all mean?  That's what I ask myself in my endless quest for ultimate truth.  Dear God, what does it all mean?#1
+1159#1160#Ses05M_script03_1_M012#test/Ses05M_script03_1_M012.wav#Um What does it all mean?  That's what I ask myself in my endless quest for ultimate truth.  Dear God, what does it all mean?#0
 1160#1161#Ses05M_script03_1_F011#test/Ses05M_script03_1_F011.wav#Don't laugh at me.  I'm serious.#2
 1161#1162#Ses05M_script03_1_M013#test/Ses05M_script03_1_M013.wav#You mustn't be serious, darling.  That's just what they want.#1
 1162#1163#Ses05M_script03_1_F012#test/Ses05M_script03_1_F012.wav#Who's they?#2
@@ -1191,7 +1191,7 @@
 1189#1190#Ses05M_script03_2_F002#test/Ses05M_script03_2_F002.wav#Not at all.  I quite like it.  I wear it often.#2
 1190#1191#Ses05M_script03_2_F004#test/Ses05M_script03_2_F004.wav#Oh, maybe a little.  Nothing serious.#2
 1191#1192#Ses05M_script03_2_F005#test/Ses05M_script03_2_F005.wav#Well, what of it.#2
-1192#1193#Ses05M_script03_2_F006#test/Ses05M_script03_2_F006.wav#Well it gave him a lot of pleasure and it didn't hurt me.#3
+1192#1193#Ses05M_script03_2_F006#test/Ses05M_script03_2_F006.wav#Well it gave him a lot of pleasure and it didn't hurt me.#1
 1193#1194#Ses05M_script03_2_M008#test/Ses05M_script03_2_M008.wav#Well, that's a nice point of view I must say.#0
 1194#1195#Ses05M_script03_2_M009#test/Ses05M_script03_2_M009.wav#Me, too, bored stiff.#1
 1195#1196#Ses05M_script03_2_M010#test/Ses05M_script03_2_M010.wav#Do you want some brandy?#2
@@ -1220,7 +1220,7 @@
 1218#1219#Ses05M_script03_2_M034#test/Ses05M_script03_2_M034.wav#Well, there are people downstairs, I suppose.#0
 1219#1220#Ses05M_script03_2_M035#test/Ses05M_script03_2_M035.wav#This is no time of the year for Tunis.#0
 1220#1221#Ses05M_script03_2_M036#test/Ses05M_script03_2_M036.wav#I do I shall do no such thing.#0
-1221#1222#Ses05M_script03_2_F034#test/Ses05M_script03_2_F034.wav#Very well.  If you have to be boorish and idiotic.#0
+1221#1222#Ses05M_script03_2_F034#test/Ses05M_script03_2_F034.wav#Very well.  If you have to be boorish and idiotic.#1
 1222#1223#Ses05M_script03_2_M037#test/Ses05M_script03_2_M037.wav#Turn it off.  It's driving me mad.#0
 1223#1224#Ses05M_script03_2_F035#test/Ses05M_script03_2_F035.wav#You are far too temperamental.  Try to control yourself.#0
 1224#1225#Ses05M_script03_2_M038#test/Ses05M_script03_2_M038.wav#Turn it off!#0

@@ -123,12 +123,12 @@ train_feature = scaler.fit_transform(train_feature)
 dev_feature = scaler.transform(dev_feature)
 test_feature = scaler.transform(test_feature)
 # 训练模型
-best_lgbm = MyLGBM(
+model = MyLGBM(
     boosting_type="gbdt",
-    num_leaves=12,
-    max_depth=8,
+    num_leaves=14,
+    max_depth=9,
     learning_rate=0.01,
-    n_estimators=900,
+    n_estimators=800,
     subsample_for_bin=200000,
     min_split_gain=0.1,
     min_child_weight=0.001,
@@ -143,6 +143,7 @@ best_lgbm = MyLGBM(
     importance_type="split",
 )
 
+best_lgbm = model
 best_lgbm.fit(train_feature, train_label)
 
 # 评估模型在训练集上的表现

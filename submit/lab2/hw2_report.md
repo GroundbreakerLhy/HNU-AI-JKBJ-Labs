@@ -248,10 +248,10 @@ confuse_matrix:
 ### 4.2 模型调优和评估
 
 ```python
-best_lgbm = MyLGBM(
+model = MyLGBM(
     boosting_type="gbdt",
-    num_leaves=12,
-    max_depth=8,
+    num_leaves=14,
+    max_depth=9,
     learning_rate=0.01,
     n_estimators=800,
     subsample_for_bin=200000,
@@ -269,7 +269,7 @@ best_lgbm = MyLGBM(
 )
 ```
 
-实验参数设置了8的最大深度，12的叶子节点数，0.01的学习率，800的迭代次数，0.8的子采样率，0.8的特征采样率，6的 L1 正则化系数，5.0 的 L2 正则化系数。
+实验参数设计了14的叶子节点数，9的最大深度，0.01的学习率，800的迭代次数，0.1的最小分裂增益，0.001的最小子节点权重，20的最小子节点样本数，0.8的子采样率，2的子采样频率，0.8的特征采样率，6的 L1 正则化系数，5.0 的 L2 正则化系数。
 
 进过调优，模型得到了以下结果：
 
