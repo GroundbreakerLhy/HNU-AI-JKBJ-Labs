@@ -1,4 +1,5 @@
 *.wav
-*.bin
+bert-base-uncased
+llama-3.2-1B
 *.npy
 best_model.pt
