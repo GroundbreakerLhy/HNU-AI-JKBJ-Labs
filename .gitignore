@@ -1,3 +1,4 @@
 *.wav
 *.bin
 *.npy
+best_model.pt
