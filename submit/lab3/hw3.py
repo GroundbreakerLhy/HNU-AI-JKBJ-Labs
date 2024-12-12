@@ -12,7 +12,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-# 设置随机种子
 def set_seeds(seed_val):
     random.seed(seed_val)
     np.random.seed(seed_val)
@@ -22,7 +21,6 @@ def set_seeds(seed_val):
 
 set_seeds(42)
 
-# 加载数据
 train_csv = pd.read_csv("./CSVfile/train.csv", sep="#")
 dev_csv = pd.read_csv("./CSVfile/dev.csv", sep="#")
 test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
@@ -33,21 +31,15 @@ dev_txt = list(dev_csv.text)
 dev_label = list(dev_csv.label)
 test_txt = list(test_csv.text)
 
-# 加载本地的 LLaMA 分词器
-# 请将 "./llama" 替换为您本地 LLaMA 模型的路径
-tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
 
-# 设置 pad_token_id，否则会出现错误
+tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
 tokenizer.pad_token_id = tokenizer.eos_token_id
 
-# 定义标签数量
 num_labels = 4
-
-# 加载 LLaMA 模型并添加分类头
 model = LlamaForSequenceClassification.from_pretrained(
     "./llama-3.2-1B",
     num_labels=num_labels,
-    ignore_mismatched_sizes=True,  # 忽略形状不匹配的警告
+    ignore_mismatched_sizes=True,
 )
 model.config.pad_token_id = tokenizer.pad_token_id
 model.pad_token_id = tokenizer.pad_token_id
@@ -60,7 +52,6 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 
-# 文本编码函数
 def text_tokenize(text_list):
     encoded_text = tokenizer.batch_encode_plus(
         text_list,
@@ -73,12 +64,11 @@ def text_tokenize(text_list):
     return encoded_text
 
 
-# 编码文本
 train_encoded = text_tokenize(train_txt)
 dev_encoded = text_tokenize(dev_txt)
 test_encoded = text_tokenize(test_txt)
 
-# 创建数据集
+
 train_dataset = TensorDataset(
     train_encoded["input_ids"],
     train_encoded["attention_mask"],
@@ -89,8 +79,8 @@ dev_dataset = TensorDataset(
 )
 test_dataset = TensorDataset(test_encoded["input_ids"], test_encoded["attention_mask"])
 
-# 创建数据加载器
-batch_size = 32  # 根据显存大小调整
+
+batch_size = 32
 dataloader_train = DataLoader(
     train_dataset, sampler=RandomSampler(train_dataset), batch_size=batch_size
 )
@@ -102,7 +92,6 @@ dataloader_test = DataLoader(
 )
 
 
-# 定义模型训练类
 class MyDLmodel:
     def __init__(self, model, device, patience=3):
         self.device = device
@@ -111,7 +100,9 @@ class MyDLmodel:
         self.early_stop_counter = 0
 
         self.model = model
-        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=2e-5, eps=1e-8, weight_decay=0.05)
+        self.optimizer = torch.optim.AdamW(
+            self.model.parameters(), lr=2e-5, eps=1e-8, weight_decay=0.05
+        )
 
     def train(self, dataloader_train, dataloader_dev, epochs):
         for epoch in range(epochs):
@@ -147,7 +138,9 @@ class MyDLmodel:
                     f"No improvement in validation F1 Score for {self.early_stop_counter} epoch(s).\n"
                 )
                 if self.early_stop_counter >= self.patience:
-                    print(f"Early stopping triggered at F1 Score: {self.best_f1_score:.4f}")
+                    print(
+                        f"Early stopping triggered at F1 Score: {self.best_f1_score:.4f}"
+                    )
                     break
 
     def evaluate(self, dataloader_val):
@@ -198,18 +191,15 @@ class MyDLmodel:
         return all_preds
 
 
-# 定义训练参数
-epochs = 15  # 根据需要调整
+epochs = 15
 mymodel = MyDLmodel(model, device)
 
-# 开始训练
+
 mymodel.train(dataloader_train, dataloader_dev, epochs)
 
-# # 在测试集上进行预测
 # test_preds = mymodel.predict(dataloader_test)
 
 
-# # 将预测结果写入文件
 # def write_result(test_preds):
 #     if len(test_preds) != len(test_csv):
 #         print("错误！请检查 test_preds 长度是否正确！")
