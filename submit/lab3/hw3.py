@@ -19,39 +19,6 @@ def set_seeds(seed_val):
     torch.cuda.manual_seed_all(seed_val)
 
 
-set_seeds(42)
-
-train_csv = pd.read_csv("./CSVfile/train.csv", sep="#")
-dev_csv = pd.read_csv("./CSVfile/dev.csv", sep="#")
-test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
-
-train_txt = list(train_csv.text)
-train_label = list(train_csv.label)
-dev_txt = list(dev_csv.text)
-dev_label = list(dev_csv.label)
-test_txt = list(test_csv.text)
-
-
-tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
-tokenizer.pad_token_id = tokenizer.eos_token_id
-
-num_labels = 4
-model = LlamaForSequenceClassification.from_pretrained(
-    "./llama-3.2-1B",
-    num_labels=num_labels,
-    ignore_mismatched_sizes=True,
-)
-model.config.pad_token_id = tokenizer.pad_token_id
-model.pad_token_id = tokenizer.pad_token_id
-
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# if torch.cuda.device_count() > 1:
-#     print(f'Using {torch.cuda.device_count()} GPUs.')
-#     model = torch.nn.DataParallel(model)
-model.to(device)
-
-
 def add_prompt(
     text_list,
     prompt="""I am working on emotion categorization, please make an emotion classification based on the following text. 
@@ -60,7 +27,7 @@ def add_prompt(
     return [prompt + text for text in text_list]
 
 
-def text_tokenize(text_list):
+def text_tokenize(text_list, tokenizer):
     encoded_text = tokenizer.batch_encode_plus(
         text_list,
         add_special_tokens=True,
@@ -72,36 +39,14 @@ def text_tokenize(text_list):
     return encoded_text
 
 
-train_txt = add_prompt(train_txt)
-dev_txt = add_prompt(dev_txt)
-test_txt = add_prompt(test_txt)
-
-train_encoded = text_tokenize(train_txt)
-dev_encoded = text_tokenize(dev_txt)
-test_encoded = text_tokenize(test_txt)
-
-
-train_dataset = TensorDataset(
-    train_encoded["input_ids"],
-    train_encoded["attention_mask"],
-    torch.tensor(train_label),
-)
-dev_dataset = TensorDataset(
-    dev_encoded["input_ids"], dev_encoded["attention_mask"], torch.tensor(dev_label)
-)
-test_dataset = TensorDataset(test_encoded["input_ids"], test_encoded["attention_mask"])
-
-
-batch_size = 32
-dataloader_train = DataLoader(
-    train_dataset, sampler=RandomSampler(train_dataset), batch_size=batch_size
-)
-dataloader_dev = DataLoader(
-    dev_dataset, sampler=SequentialSampler(dev_dataset), batch_size=batch_size
-)
-dataloader_test = DataLoader(
-    test_dataset, sampler=SequentialSampler(test_dataset), batch_size=batch_size
-)
+def write_result(test_preds):
+    if len(test_preds) != 1241:
+        print("错误!请检查test_preds长度是否为1241!!!")
+        return -1
+    test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
+    test_csv["label"] = test_preds
+    test_csv.to_csv("./submit/lab2/hw2_result.csv", sep="#")
+    print("测试集预测结果已成功写入到文件中!")
 
 
 class MyDLmodel:
@@ -113,7 +58,11 @@ class MyDLmodel:
 
         self.model = model
         self.optimizer = torch.optim.AdamW(
-            self.model.parameters(), lr=8e-6, eps=1e-8, weight_decay=0.1, betas=(0.9, 0.999)
+            self.model.parameters(),
+            lr=8e-6,
+            eps=1e-8,
+            weight_decay=0.1,
+            betas=(0.9, 0.999),
         )
 
     def train(self, dataloader_train, dataloader_dev, epochs):
@@ -136,9 +85,8 @@ class MyDLmodel:
             avg_train_loss = total_loss / len(dataloader_train)
             print(f"Epoch {epoch+1}/{epochs}, Training Loss: {avg_train_loss:.4f}")
 
-            val_loss, val_f1 = self.evaluate(dataloader_dev)
+            val_f1 = self.evaluate(dataloader_dev)
 
-            # 早停机制
             if val_f1 > self.best_f1_score:
                 self.best_f1_score = val_f1
                 self.early_stop_counter = 0
@@ -183,7 +131,7 @@ class MyDLmodel:
             f"Validation Loss: {avg_val_loss:.4f}, Accuracy: {acc:.4f}, F1 Score: {f1:.4f}"
         )
 
-        return avg_val_loss, f1
+        return f1
 
     def predict(self, dataloader_test):
         self.model.eval()
@@ -203,22 +151,68 @@ class MyDLmodel:
         return all_preds
 
 
-epochs = 15
-mymodel = MyDLmodel(model, device)
+if __name__ == "__main__":
+    set_seeds(42)
 
+    train_csv = pd.read_csv("./CSVfile/train.csv", sep="#")
+    dev_csv = pd.read_csv("./CSVfile/dev.csv", sep="#")
+    test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
 
-mymodel.train(dataloader_train, dataloader_dev, epochs)
+    train_txt = list(train_csv.text)
+    train_label = list(train_csv.label)
+    dev_txt = list(dev_csv.text)
+    dev_label = list(dev_csv.label)
+    test_txt = list(test_csv.text)
 
-# test_preds = mymodel.predict(dataloader_test)
+    tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
+    tokenizer.pad_token_id = tokenizer.eos_token_id
 
+    num_labels = 4
+    model = LlamaForSequenceClassification.from_pretrained(
+        "./llama-3.2-1B",
+        num_labels=num_labels,
+        ignore_mismatched_sizes=True,
+    )
+    model.config.pad_token_id = tokenizer.pad_token_id
+    model.pad_token_id = tokenizer.pad_token_id
 
-# def write_result(test_preds):
-#     if len(test_preds) != len(test_csv):
-#         print("错误！请检查 test_preds 长度是否正确！")
-#         return -1
-#     test_csv["label"] = test_preds
-#     test_csv.to_csv("result.csv", sep="#", index=False)
-#     print("测试集预测结果已成功写入到文件中！")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
 
+    train_txt = add_prompt(train_txt)
+    dev_txt = add_prompt(dev_txt)
+    test_txt = add_prompt(test_txt)
 
-# write_result(test_preds)
+    train_encoded = text_tokenize(train_txt, tokenizer)
+    dev_encoded = text_tokenize(dev_txt, tokenizer)
+    test_encoded = text_tokenize(test_txt, tokenizer)
+
+    train_dataset = TensorDataset(
+        train_encoded["input_ids"],
+        train_encoded["attention_mask"],
+        torch.tensor(train_label),
+    )
+    dev_dataset = TensorDataset(
+        dev_encoded["input_ids"], dev_encoded["attention_mask"], torch.tensor(dev_label)
+    )
+    test_dataset = TensorDataset(
+        test_encoded["input_ids"], test_encoded["attention_mask"]
+    )
+
+    batch_size = 32
+    dataloader_train = DataLoader(
+        train_dataset, sampler=RandomSampler(train_dataset), batch_size=batch_size
+    )
+    dataloader_dev = DataLoader(
+        dev_dataset, sampler=SequentialSampler(dev_dataset), batch_size=batch_size
+    )
+    dataloader_test = DataLoader(
+        test_dataset, sampler=SequentialSampler(test_dataset), batch_size=batch_size
+    )
+
+    epochs = 15
+    mymodel = MyDLmodel(model, device)
+    mymodel.train(dataloader_train, dataloader_dev, epochs)
+
+    # test_preds = mymodel.predict(dataloader_test)
+    # write_result(test_preds)
