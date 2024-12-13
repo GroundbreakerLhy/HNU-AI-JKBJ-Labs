@@ -52,6 +52,14 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 
+def add_prompt(
+    text_list,
+    prompt="""I am working on emotion categorization, please make an emotion classification based on the following text. 
+            The classification label 0 means ANGRY, 1 is HAPPY or EXCITED, 2 is NEUTRAL, 3 is SAD: \n""",
+):
+    return [prompt + text for text in text_list]
+
+
 def text_tokenize(text_list):
     encoded_text = tokenizer.batch_encode_plus(
         text_list,
@@ -63,6 +71,10 @@ def text_tokenize(text_list):
     )
     return encoded_text
 
+
+train_txt = add_prompt(train_txt)
+dev_txt = add_prompt(dev_txt)
+test_txt = add_prompt(test_txt)
 
 train_encoded = text_tokenize(train_txt)
 dev_encoded = text_tokenize(dev_txt)
@@ -101,7 +113,7 @@ class MyDLmodel:
 
         self.model = model
         self.optimizer = torch.optim.AdamW(
-            self.model.parameters(), lr=2e-5, eps=1e-8, weight_decay=0.05
+            self.model.parameters(), lr=8e-6, eps=1e-8, weight_decay=0.1, betas=(0.9, 0.999)
         )
 
     def train(self, dataloader_train, dataloader_dev, epochs):
