@@ -8,7 +8,8 @@ from sklearn.metrics import accuracy_score, f1_score
 import numpy as np
 import random
 import warnings
-
+import torch.nn.functional as F
+import torch.nn as nn
 import nltk
 from nltk.corpus import wordnet
 
@@ -77,6 +78,21 @@ def synonym_replacement(text_list, n):
     return augmented_text
 
 
+class LabelSmoothingCrossEntropy(nn.Module):
+    def __init__(self, smoothing=0.1):
+        super(LabelSmoothingCrossEntropy, self).__init__()
+        self.smoothing = smoothing
+
+    def forward(self, pred, target):
+        confidence = 1.0 - self.smoothing
+        logprobs = F.log_softmax(pred, dim=-1)
+        nll_loss = -logprobs.gather(dim=-1, index=target.unsqueeze(1))
+        nll_loss = nll_loss.squeeze(1)
+        smooth_loss = -logprobs.mean(dim=-1)
+        loss = confidence * nll_loss + self.smoothing * smooth_loss
+        return loss.mean()
+
+
 class MyDLmodel:
     def __init__(self, model, device, patience=3):
         self.device = device
@@ -92,6 +108,8 @@ class MyDLmodel:
             weight_decay=0.1,
             betas=(0.9, 0.999),
         )
+        self.smoothing = 0.1
+        self.criterion = LabelSmoothingCrossEntropy(smoothing=self.smoothing)
 
     def train(self, dataloader_train, dataloader_dev, epochs):
         for epoch in range(epochs):
@@ -105,7 +123,8 @@ class MyDLmodel:
                 outputs = self.model(
                     input_ids=input_ids, attention_mask=attention_mask, labels=labels
                 )
-                loss = outputs.loss
+                logits = outputs.logits
+                loss = self.criterion(logits, labels)
                 total_loss += loss.item()
                 loss.backward()
                 self.optimizer.step()
@@ -144,8 +163,8 @@ class MyDLmodel:
                 outputs = self.model(
                     input_ids=input_ids, attention_mask=attention_mask, labels=labels
                 )
-                loss = outputs.loss
                 logits = outputs.logits
+                loss = self.criterion(logits, labels)
 
                 total_loss += loss.item()
                 preds = torch.argmax(logits, dim=1)
@@ -195,7 +214,6 @@ if __name__ == "__main__":
     train_txt_augmented = synonym_replacement(train_txt, 2)
     train_txt = train_txt + train_txt_augmented
     train_label = train_label + train_label
-
 
     tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
     tokenizer.pad_token_id = tokenizer.eos_token_id
