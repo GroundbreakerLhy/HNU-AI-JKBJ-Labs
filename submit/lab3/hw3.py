@@ -9,7 +9,11 @@ import numpy as np
 import random
 import warnings
 
+import nltk
+from nltk.corpus import wordnet
+
 warnings.filterwarnings("ignore")
+nltk.download("wordnet")
 
 
 def set_seeds(seed_val):
@@ -21,7 +25,7 @@ def set_seeds(seed_val):
 
 def add_prompt(
     text_list,
-    prompt="""I am working on emotion categorization, please make an emotion classification based on the following text. 
+    prompt="""I am working on emotion classification, please make an emotion classification based on the following text. 
             The classification label 0 means ANGRY, 1 is HAPPY or EXCITED, 2 is NEUTRAL, 3 is SAD: \n""",
 ):
     return [prompt + text for text in text_list]
@@ -47,6 +51,30 @@ def write_result(test_preds):
     test_csv["label"] = test_preds
     test_csv.to_csv("./submit/lab2/hw2_result.csv", sep="#")
     print("测试集预测结果已成功写入到文件中!")
+
+
+def synonym_replacement(text_list, n):
+    random.seed(42)
+    augmented_text = []
+    for sentence in text_list:
+        words = sentence.split()
+        new_words = words.copy()
+        random_word_list = list(set([word for word in words if wordnet.synsets(word)]))
+        random.shuffle(random_word_list)
+        num_replaced = 0
+        for random_word in random_word_list:
+            synonyms = wordnet.synsets(random_word)
+            if synonyms:
+                synonym = synonyms[0].lemmas()[0].name()
+                new_words = [
+                    synonym if word == random_word else word for word in new_words
+                ]
+                num_replaced += 1
+            if num_replaced >= n:
+                break
+        augmented_sentence = " ".join(new_words)
+        augmented_text.append(augmented_sentence)
+    return augmented_text
 
 
 class MyDLmodel:
@@ -164,6 +192,11 @@ if __name__ == "__main__":
     dev_label = list(dev_csv.label)
     test_txt = list(test_csv.text)
 
+    train_txt_augmented = synonym_replacement(train_txt, 2)
+    train_txt = train_txt + train_txt_augmented
+    train_label = train_label + train_label
+
+
     tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
     tokenizer.pad_token_id = tokenizer.eos_token_id
 
@@ -199,7 +232,7 @@ if __name__ == "__main__":
         test_encoded["input_ids"], test_encoded["attention_mask"]
     )
 
-    batch_size = 32
+    batch_size = 48
     dataloader_train = DataLoader(
         train_dataset, sampler=RandomSampler(train_dataset), batch_size=batch_size
     )
