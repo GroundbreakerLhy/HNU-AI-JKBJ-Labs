@@ -2,7 +2,7 @@ import pandas as pd
 import torch
 from tqdm import tqdm
 from transformers import AutoTokenizer
-from transformers import LlamaForSequenceClassification
+from transformers import LlamaForSequenceClassification, LlamaConfig
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from sklearn.metrics import accuracy_score, f1_score
 import numpy as np
@@ -14,7 +14,7 @@ import nltk
 from nltk.corpus import wordnet
 
 warnings.filterwarnings("ignore")
-nltk.download("wordnet")
+# nltk.download("wordnet")
 
 
 def set_seeds(seed_val):
@@ -38,7 +38,7 @@ def text_tokenize(text_list, tokenizer):
         add_special_tokens=True,
         padding="max_length",
         truncation=True,
-        max_length=256,
+        max_length=512,
         return_tensors="pt",
     )
     return encoded_text
@@ -73,6 +73,22 @@ def synonym_replacement(text_list, n):
                 num_replaced += 1
             if num_replaced >= n:
                 break
+        augmented_sentence = " ".join(new_words)
+        augmented_text.append(augmented_sentence)
+    return augmented_text
+
+
+def random_deletion(text_list, p=0.1):
+    random.seed(42)
+    augmented_text = []
+    for sentence in text_list:
+        words = sentence.split()
+        if len(words) == 1:
+            augmented_text.append(sentence)
+            continue
+        new_words = [word for word in words if random.uniform(0, 1) > p]
+        if len(new_words) == 0:
+            new_words = [random.choice(words)]
         augmented_sentence = " ".join(new_words)
         augmented_text.append(augmented_sentence)
     return augmented_text
@@ -215,14 +231,24 @@ if __name__ == "__main__":
     train_txt = train_txt + train_txt_augmented
     train_label = train_label + train_label
 
+    train_txt_augmented = random_deletion(train_txt, p=0.1)
+    train_txt = train_txt + train_txt_augmented
+    train_label = train_label + train_label
+
     tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
     tokenizer.pad_token_id = tokenizer.eos_token_id
 
     num_labels = 4
+    config = LlamaConfig.from_pretrained(
+        "llama-3.2-1B",
+        num_labels=num_labels,
+        hidden_dropout_prob=0.3,
+        ignore_mismatched_sizes=True,
+        dtype=torch.float32,
+    )
     model = LlamaForSequenceClassification.from_pretrained(
         "./llama-3.2-1B",
-        num_labels=num_labels,
-        ignore_mismatched_sizes=True,
+        config=config,
     )
     model.config.pad_token_id = tokenizer.pad_token_id
     model.pad_token_id = tokenizer.pad_token_id
@@ -250,7 +276,7 @@ if __name__ == "__main__":
         test_encoded["input_ids"], test_encoded["attention_mask"]
     )
 
-    batch_size = 48
+    batch_size = 24
     dataloader_train = DataLoader(
         train_dataset, sampler=RandomSampler(train_dataset), batch_size=batch_size
     )
