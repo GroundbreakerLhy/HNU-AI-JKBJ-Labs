@@ -50,7 +50,7 @@ def write_result(test_preds):
         return -1
     test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
     test_csv["label"] = test_preds
-    test_csv.to_csv("./submit/lab2/hw2_result.csv", sep="#")
+    test_csv.to_csv("./submit/lab3/hw3_result.csv", sep="#")
     print("测试集预测结果已成功写入到文件中!")
 
 
@@ -153,7 +153,7 @@ class MyDLmodel:
             if val_f1 > self.best_f1_score:
                 self.best_f1_score = val_f1
                 self.early_stop_counter = 0
-                torch.save(self.model.state_dict(), "best_model.pt")
+                torch.save(self.model.state_dict(), "best_model_hw3.pt")
                 print("Validation F1 Score improved, saving model.\n")
             else:
                 self.early_stop_counter += 1
@@ -198,7 +198,7 @@ class MyDLmodel:
 
     def predict(self, dataloader_test):
         self.model.eval()
-        self.model.load_state_dict(torch.load("best_model.pt"))
+        self.model.load_state_dict(torch.load("best_model_hw3.pt"))
 
         all_preds = []
         with torch.no_grad():
@@ -291,5 +291,5 @@ if __name__ == "__main__":
     mymodel = MyDLmodel(model, device)
     mymodel.train(dataloader_train, dataloader_dev, epochs)
 
-    # test_preds = mymodel.predict(dataloader_test)
-    # write_result(test_preds)
+    test_preds = mymodel.predict(dataloader_test)
+    write_result(test_preds)

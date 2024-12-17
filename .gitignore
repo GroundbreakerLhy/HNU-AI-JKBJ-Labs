@@ -2,7 +2,7 @@
 bert-base-uncased
 llama-3.2-1B
 *.npy
-best_model.pt
+best_model_hw[0-9].pt
 hw[0-9]_report.md
 hw[0-9]_result.csv
 qwen-32B-Preview
