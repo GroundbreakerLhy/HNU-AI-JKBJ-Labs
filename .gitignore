@@ -1,9 +1,13 @@
+# data
 *.wav
+*.npy
+# model
 bert-base-uncased
 llama-3.2-1B
-*.npy
-best_model_hw[0-9].pt
-hw[0-9]_report.md
-hw[0-9]_result.csv
 qwen-32B-Preview
 roberta-base-go_emotions
+best_model_hw[0-9].pt
+modern-bert
+# hw
+hw[0-9]_report.md
+hw[0-9]_result.csv
