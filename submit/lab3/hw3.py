@@ -10,8 +10,7 @@ import random
 import warnings
 import torch.nn.functional as F
 import torch.nn as nn
-import nltk
-from nltk.corpus import wordnet
+import augment
 
 warnings.filterwarnings("ignore")
 # nltk.download("wordnet")
@@ -52,46 +51,6 @@ def write_result(test_preds):
     test_csv["label"] = test_preds
     test_csv.to_csv("./submit/lab3/hw3_result.csv", sep="#")
     print("测试集预测结果已成功写入到文件中!")
-
-
-def synonym_replacement(text_list, n):
-    random.seed(42)
-    augmented_text = []
-    for sentence in text_list:
-        words = sentence.split()
-        new_words = words.copy()
-        random_word_list = list(set([word for word in words if wordnet.synsets(word)]))
-        random.shuffle(random_word_list)
-        num_replaced = 0
-        for random_word in random_word_list:
-            synonyms = wordnet.synsets(random_word)
-            if synonyms:
-                synonym = synonyms[0].lemmas()[0].name()
-                new_words = [
-                    synonym if word == random_word else word for word in new_words
-                ]
-                num_replaced += 1
-            if num_replaced >= n:
-                break
-        augmented_sentence = " ".join(new_words)
-        augmented_text.append(augmented_sentence)
-    return augmented_text
-
-
-def random_deletion(text_list, p=0.1):
-    random.seed(42)
-    augmented_text = []
-    for sentence in text_list:
-        words = sentence.split()
-        if len(words) == 1:
-            augmented_text.append(sentence)
-            continue
-        new_words = [word for word in words if random.uniform(0, 1) > p]
-        if len(new_words) == 0:
-            new_words = [random.choice(words)]
-        augmented_sentence = " ".join(new_words)
-        augmented_text.append(augmented_sentence)
-    return augmented_text
 
 
 class LabelSmoothingCrossEntropy(nn.Module):
@@ -153,7 +112,7 @@ class MyDLmodel:
             if val_f1 > self.best_f1_score:
                 self.best_f1_score = val_f1
                 self.early_stop_counter = 0
-                torch.save(self.model.state_dict(), "best_model_hw3.pt")
+                torch.save(self.model.state_dict(), "./submit/lab3/best_model_hw3.pt")
                 print("Validation F1 Score improved, saving model.\n")
             else:
                 self.early_stop_counter += 1
@@ -198,7 +157,7 @@ class MyDLmodel:
 
     def predict(self, dataloader_test):
         self.model.eval()
-        self.model.load_state_dict(torch.load("best_model_hw3.pt"))
+        self.model.load_state_dict(torch.load("./submit/lab3/best_model_hw3.pt"))
 
         all_preds = []
         with torch.no_grad():
@@ -227,13 +186,17 @@ if __name__ == "__main__":
     dev_label = list(dev_csv.label)
     test_txt = list(test_csv.text)
 
-    train_txt_augmented = synonym_replacement(train_txt, 2)
-    train_txt = train_txt + train_txt_augmented
-    train_label = train_label + train_label
+    text_augment = augment.eda(train_txt, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1)
+    train_txt.extend(text_augment)
+    train_label.extend(train_label * 3)
 
-    train_txt_augmented = random_deletion(train_txt, p=0.1)
-    train_txt = train_txt + train_txt_augmented
-    train_label = train_label + train_label
+    llm_augmenter = augment.LLMAugmenter()
+    text_augment, label_augment = llm_augmenter.augment_dataset(
+        train_txt, train_label, samples_per_text=1
+    )
+
+    train_txt.extend(text_augment)
+    train_label.extend(label_augment)
 
     tokenizer = AutoTokenizer.from_pretrained("llama-3.2-1B")
     tokenizer.pad_token_id = tokenizer.eos_token_id
@@ -287,8 +250,8 @@ if __name__ == "__main__":
         test_dataset, sampler=SequentialSampler(test_dataset), batch_size=batch_size
     )
 
-    epochs = 15
-    mymodel = MyDLmodel(model, device)
+    epochs = 20
+    mymodel = MyDLmodel(model, device, patience=8)
     mymodel.train(dataloader_train, dataloader_dev, epochs)
 
     test_preds = mymodel.predict(dataloader_test)
