@@ -4,10 +4,11 @@
 # model
 bert-base-uncased
 llama-3.2-1B
-qwen-32B-Preview
+Qwen2-Audio-7B-Instruct
 roberta-base-go_emotions
 best_model_hw[0-9].pt
 modern-bert
+Wav2Vec2-Base-960h
 # hw
 hw[0-9]_report.md
 hw[0-9]_result.csv
