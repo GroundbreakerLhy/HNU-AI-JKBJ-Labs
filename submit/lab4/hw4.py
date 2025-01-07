@@ -71,7 +71,7 @@ def write_result(test_preds):
         return -1
     test_csv = pd.read_csv("./CSVfile/test.csv", sep="#")
     test_csv["label"] = test_preds
-    test_csv.to_csv("./result.csv", sep="#")
+    test_csv.to_csv("submit/lab4/hw4_result.csv", sep="#")
     print("测试集预测结果已成功写入到文件中！")
 
 
@@ -130,7 +130,6 @@ class CrossModalTransformer(nn.Module):
 class HybridFusion(nn.Module):
     def __init__(self, input_dim=256, hidden_dim=1024, num_layers=5):
         super().__init__()
-        # LSTM 处理序列依赖
         self.lstm = nn.LSTM(
             input_dim,
             hidden_dim,
@@ -139,7 +138,6 @@ class HybridFusion(nn.Module):
             batch_first=True,
         )
 
-        # Transformer 处理模态间交互
         self.transformer = nn.TransformerEncoderLayer(
             d_model=hidden_dim * 2,
             nhead=8,
@@ -212,7 +210,6 @@ class EmotionClassification:
             weight_decay=0.15,
         )
         self.criterion = LabelSmoothingCrossEntropy(smoothing=0.15)
-        self.patience = 3
         self.best_f1_score = 0
         self.early_stop_counter = 0
 
@@ -243,14 +240,8 @@ class EmotionClassification:
             if val_f1 > self.best_f1_score:
                 self.best_f1_score = val_f1
                 self.early_stop_counter = 0
-                torch.save(self.model.state_dict(), "best_model.pt")
+                torch.save(self.model.state_dict(), "submit/lab4/best_model_hw4.pt")
                 print("F1 Score improved, saving model.\n")
-            # else:
-            #     self.early_stop_counter += 1
-            #     print(f"No improvement for {self.early_stop_counter} epoch(s).\n")
-            #     if self.early_stop_counter >= self.patience:
-            #         print(f"Early stopping at F1: {self.best_f1_score:.4f}")
-            #         break
             print("-" * 50)
         print(f"Training finished. Dev F1: {self.best_f1_score:.4f}")
 
@@ -280,7 +271,7 @@ class EmotionClassification:
 
     def predict(self, test_loader):
         self.model.eval()
-        self.model.load_state_dict(torch.load("best_model.pt"))
+        self.model.load_state_dict(torch.load("submit/lab4/best_model_hw4.pt"))
         predictions = []
 
         with torch.no_grad():
@@ -330,6 +321,6 @@ if __name__ == "__main__":
     model = EmotionClassification()
     model.train(train_loader, dev_loader, epochs=25)
 
-    model.model.load_state_dict(torch.load("best_model.pt"))
+    model.model.load_state_dict(torch.load("submit/lab4/best_model_hw4.pt"))
     test_preds = model.predict(test_loader)
     write_result(test_preds)
