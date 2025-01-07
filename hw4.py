@@ -132,12 +132,19 @@ class HybridFusion(nn.Module):
         super().__init__()
         # LSTM 处理序列依赖
         self.lstm = nn.LSTM(
-            input_dim, hidden_dim, num_layers, bidirectional=True, batch_first=True
+            input_dim,
+            hidden_dim,
+            num_layers,
+            bidirectional=True,
+            batch_first=True,
         )
 
         # Transformer 处理模态间交互
         self.transformer = nn.TransformerEncoderLayer(
-            d_model=hidden_dim * 2, nhead=8, dim_feedforward=1024, dropout=0.1
+            d_model=hidden_dim * 2,
+            nhead=8,
+            dim_feedforward=1024,
+            dropout=0.1,
         )
 
         self.norm = nn.LayerNorm(hidden_dim * 2)
@@ -161,7 +168,10 @@ class MultiModalModel(nn.Module):
         self.fusion = HybridFusion(256, 256)
 
         self.classifier = nn.Sequential(
-            nn.Linear(512, 256), nn.ReLU(), nn.Dropout(0.2), nn.Linear(256, num_classes)
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(256, num_classes),
         )
 
     def forward(self, text_ids, text_mask, audio):
@@ -196,7 +206,10 @@ class EmotionClassification:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = MultiModalModel().to(self.device)
         self.optimizer = torch.optim.AdamW(
-            self.model.parameters(), lr=2e-5, eps=1e-8, weight_decay=0.15
+            self.model.parameters(),
+            lr=2e-5,
+            eps=1e-8,
+            weight_decay=0.15,
         )
         self.criterion = LabelSmoothingCrossEntropy(smoothing=0.15)
         self.patience = 3
@@ -302,21 +315,21 @@ if __name__ == "__main__":
 
     test_audio = pd.read_csv("CSVfile/test_feature.csv").iloc[:, :-1].to_numpy()
 
-    # test_text = text_tokenize(test_csv.text.tolist())
-    # test_audio = pd.read_csv("CSVfile/test_feature.csv").to_numpy()
-    # test_audio = scale(test_audio)
+    test_text = text_tokenize(test_csv.text.tolist())
+    test_audio = pd.read_csv("CSVfile/test_feature.csv").to_numpy()
+    test_audio = scale(test_audio)
 
     train_dataset = MultiModalDataset(train_text, train_audio, train_label)
     dev_dataset = MultiModalDataset(dev_text, dev_audio, dev_label)
-    # test_dataset = MultiModalDataset(test_text, test_audio)
+    test_dataset = MultiModalDataset(test_text, test_audio)
 
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
     dev_loader = DataLoader(dev_dataset, batch_size=32)
-    # test_loader = DataLoader(test_dataset, batch_size=32)
+    test_loader = DataLoader(test_dataset, batch_size=32)
 
     model = EmotionClassification()
     model.train(train_loader, dev_loader, epochs=25)
 
-    # emotion_recognition.model.load_state_dict(torch.load("best_model.pt"))
-    # test_preds = emotion_recognition.predict(test_loader)
-    # write_result(test_preds)
+    model.model.load_state_dict(torch.load("best_model.pt"))
+    test_preds = model.predict(test_loader)
+    write_result(test_preds)
