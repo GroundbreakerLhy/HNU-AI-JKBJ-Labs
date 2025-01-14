@@ -10,5 +10,5 @@ best_model_hw[0-9].pt
 modern-bert
 Wav2Vec2-Base-960h
 # hw
-hw[0-9]_report.md
+# hw[0-9]_report.md
 hw[0-9]_result.csv
